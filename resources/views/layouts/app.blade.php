@@ -35,11 +35,17 @@
 
   <div class="">
     <div class="text-sm lg:flex-grow">
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">
-        Login
-      </a>
-      <a href="{{route('register')}}" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">
-        Register
+      @auth
+
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">{{Auth::user()->username}}</a>
+
+      <a href="{{route('logout')}}" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">Logout</a>
+      @endauth
+
+      @guest
+        <a href="{{route('login')}}" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">Login</a>
+        <a href="{{route('register')}}" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">Register</a>
+      @endguest
       </a>
     </div>
   </div>
