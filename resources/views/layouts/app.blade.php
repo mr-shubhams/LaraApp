@@ -21,8 +21,9 @@
   </div>
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">
-        Docs
+      @auth
+      <a href="{{route('dashboard')}}" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">
+        Dashboard
       </a>
       <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">
         Examples
@@ -30,16 +31,24 @@
       <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 font-bold">
         Blog
       </a>
+      @endauth
     </div>
   </div>
 
   <div class="">
     <div class="text-sm lg:flex-grow">
       @auth
-
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">{{Auth::user()->username}}</a>
-
-      <a href="{{route('logout')}}" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">Logout</a>
+      <ul class="flex">
+        <li>
+          <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-yellow-600 mr-4 font-bold">{{Auth::user()->username}}</a>
+        </li>
+        <li>
+          <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type='submit' class='text-white hover:text-yellow-600 mr-4 font-bold'>Logout</button>
+          </form>
+        </li>
+      </ul>
       @endauth
 
       @guest
